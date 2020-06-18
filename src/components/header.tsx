@@ -1,19 +1,16 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { css } from '@emotion/core';
-import { motion, AnimatePresence, useCycle } from 'framer-motion';
 import { useTheme } from 'emotion-theming';
 import { useScroll } from '../hooks';
 import { Logo } from './logo';
-import NavButton from './mobile-nav-button';
 import { Theme } from '../theme';
 import { GatsbyLink } from './link';
 import { MobileNav } from './mobile-nav';
 import { DesktopNav } from './desktop-nav';
 
-const navItems = ['Info', 'Venu', 'Timetable', 'Gifts', 'RSVP'];
+const navItems = ['Info', 'Venue', 'Timetable', 'Gifts', 'RSVP'];
 
 const Header = () => {
-  const [isOpen, toggleOpen] = useCycle(false, true);
   const theme = useTheme<Theme>();
   const scrollTo = useScroll({ offset: -48, delay: 400 });
   return (

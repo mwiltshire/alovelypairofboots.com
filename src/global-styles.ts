@@ -218,6 +218,7 @@ export const globalStyles = css`
       Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
     font-weight: 500;
+    line-height: 1.6;
     word-wrap: break-word;
     font-kerning: normal;
     -moz-font-feature-settings: 'kern', 'liga', 'clig', 'calt';

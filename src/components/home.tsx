@@ -1,13 +1,8 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import Image from 'gatsby-image';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { useTheme } from 'emotion-theming';
 import Container from './container';
-import CTALink from './cta-link';
-import { BP_MIN_LG, BP_MIN_XL } from '../breakpoints';
 import { Theme } from '../theme';
 
 const headerVariants = {
@@ -22,7 +17,6 @@ const headerVariants = {
 const spanVariants = {
   visible: {
     y: 0,
-    opacity: 1,
     rotateX: '0deg',
     transition: {
       duration: 1
@@ -30,8 +24,7 @@ const spanVariants = {
   },
   hidden: {
     y: 100,
-    rotateX: '45deg',
-    opacity: 0,
+    rotateX: '90deg',
     transition: {
       duration: 1
     }
@@ -137,7 +130,7 @@ const Home = () => {
               css={css`
                 display: block;
                 font-family: Raleway, sans-serif;
-                font-size: ${theme.fontSizes.sm};
+                font-size: ${theme.fontSizes.xs};
                 font-weight: ${theme.fontWeights.normal};
                 text-transform: uppercase;
                 letter-spacing: 0.15rem;
