@@ -1,40 +1,26 @@
 import React, { FC } from 'react';
-import { css } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
+import { css, SerializedStyles } from '@emotion/core';
 import Container from './container';
-import SectionHeader from './section-header';
-import { Theme } from './layout';
 
 type SectionProps = {
   id: string;
-  heading: string;
-  background?: keyof Theme['colors'];
+  styles?: SerializedStyles;
 };
 
-const Section: FC<SectionProps> = ({ id, heading, background, children }) => {
-  const theme = useTheme<Theme>();
-
+export const Section: FC<SectionProps> = ({ id, styles, children }) => {
   return (
     <section
       id={id}
       css={css`
-        border-radius: 1rem;
-        ${background && `background: ${theme.colors[background]}`};
-        ${background === 'richBlack' ? `color: ${theme.colors.white}` : ''}
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: calc(100vh - 3rem);
+        padding: 4rem 0;
+        ${styles}
       `}
     >
-      <Container>
-        <SectionHeader>{heading}</SectionHeader>
-      </Container>
-      <div
-        css={css`
-          padding: 6vmin 0 8vmin 0;
-        `}
-      >
-        {children}
-      </div>
+      <Container constrain>{children}</Container>
     </section>
   );
 };
-
-export default Section;

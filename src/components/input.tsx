@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
-import { useField } from 'formik';
+import { useField, FieldMetaProps } from 'formik';
 import { useTheme } from 'emotion-theming';
-import { Theme } from './layout';
+import { Theme } from '../theme';
 import Tag from './tag';
 
 type InputProps = {
@@ -13,6 +13,26 @@ type InputProps = {
   textarea?: boolean;
 };
 
+const getBaseInputStyles = (theme: Theme, meta: FieldMetaProps<string>) => css`
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  margin-bottom: 0.5rem;
+  background: none;
+  border-radius: 0;
+  transition: box-shadow 300ms ease;
+  ${`border-bottom: 1px solid ${
+    meta.error && meta.touched ? `${theme.colors.red300}` : 'currentColor'
+  };`}
+  &::placeholder {
+    color: #8a7f79;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
 const Input: FC<InputProps> = ({
   type = 'text',
   label,
@@ -22,12 +42,15 @@ const Input: FC<InputProps> = ({
   const theme = useTheme<Theme>();
   const [field, meta] = useField<string>(props.name);
   return (
-    <>
+    <div css={css('position: relative;')}>
       <label
         css={css`
           display: inline-block;
           margin-bottom: 0.5rem;
           font-weight: ${theme.fontWeights.bold};
+          color: ${meta.error && meta.touched
+            ? `${theme.colors.red300}`
+            : 'currentColor'};
         `}
         htmlFor={props.name}
       >
@@ -36,28 +59,9 @@ const Input: FC<InputProps> = ({
       {textarea ? (
         <textarea
           css={css`
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            border-radius: 0.3rem;
-            border: none;
-            background: ${theme.colors.white};
+            ${getBaseInputStyles(theme, meta)}
             resize: vertical;
-            min-height: 15rem;
-            margin-bottom: 1rem;
-            &::placeholder {
-              color: ${theme.colors.gray100};
-            }
-            &:focus {
-              outline: none;
-              box-shadow: inset 0 0 0 2px
-                ${meta.error && meta.touched
-                  ? theme.colors.red300
-                  : theme.colors.black};
-            }
-            ${meta.error &&
-              meta.touched &&
-              `box-shadow: inset 0 0 0 2px ${theme.colors.red300};`}
+            min-height: 5rem;
           `}
           id={props.name}
           {...field}
@@ -65,29 +69,7 @@ const Input: FC<InputProps> = ({
         />
       ) : (
         <input
-          css={css`
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            border-radius: 0.3rem;
-            border: none;
-            background: ${theme.colors.white};
-            margin-bottom: 1rem;
-            transition: box-shadow 300ms ease;
-            ${meta.error &&
-              meta.touched &&
-              `box-shadow: inset 0 0 0 2px ${theme.colors.red300};`}
-            &::placeholder {
-              color: ${theme.colors.gray100};
-            }
-            &:focus {
-              outline: none;
-              box-shadow: inset 0 0 0 2px
-                ${meta.error && meta.touched
-                  ? theme.colors.red300
-                  : theme.colors.black};
-            }
-          `}
+          css={css(getBaseInputStyles(theme, meta))}
           id={props.name}
           type={type}
           {...field}
@@ -97,6 +79,8 @@ const Input: FC<InputProps> = ({
       {meta.error && meta.touched && (
         <div
           css={css`
+            position: absolute;
+            right: 0;
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -108,7 +92,7 @@ const Input: FC<InputProps> = ({
           </Tag>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

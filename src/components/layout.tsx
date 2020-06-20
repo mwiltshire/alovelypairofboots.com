@@ -9,6 +9,8 @@ import { theme } from '../theme';
 
 import 'typeface-raleway';
 import 'typeface-great-vibes';
+import 'typeface-butler';
+import 'typeface-cooper-hewitt';
 
 const Layout: FC = ({ children }) => {
   return (
@@ -16,27 +18,7 @@ const Layout: FC = ({ children }) => {
       <Global styles={globalStyles} />
       <Header />
       <div>
-        <main
-          css={css`
-            margin: 0 5px;
-            ${BP_MIN_MD} {
-              margin: 0 15px;
-            }
-          `}
-        >
-          {children}
-        </main>
-        <footer
-          css={css`
-            display: flex;
-            align-items: center;
-            height: 3rem;
-            font-size: ${theme.fontSizes.xs};
-            text-align: center;
-          `}
-        >
-          <Container>© {new Date().getFullYear()}, Not Paramount</Container>
-        </footer>
+        <main css={css('margin: 0 2vmin;')}>{children}</main>
       </div>
     </ThemeProvider>
   );

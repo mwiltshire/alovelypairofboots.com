@@ -11,8 +11,8 @@ const ContainerDiv = styled.div<ContainerProps>`
   margin-right: auto;
   padding: 0;
   width: 100%;
-  padding-left: 3.5vmin;
-  padding-right: 3.5vmin;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
   ${({ constrain }) =>
     constrain
       ? `

@@ -43,7 +43,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#fff',
         display: 'minimal-ui',
-        icon: 'src/images/not-paramount-icon.png'
+        icon: 'src/images/icon.png'
       }
     },
     'gatsby-plugin-typescript',

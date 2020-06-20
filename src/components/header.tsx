@@ -1,18 +1,16 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
-import { useScroll } from '../hooks';
 import { Logo } from './logo';
-import { Theme } from '../theme';
 import { GatsbyLink } from './link';
 import { MobileNav } from './mobile-nav';
 import { DesktopNav } from './desktop-nav';
+import { Theme } from '../theme';
 
 const navItems = ['Info', 'Venue', 'Timetable', 'Gifts', 'RSVP'];
 
 const Header = () => {
   const theme = useTheme<Theme>();
-  const scrollTo = useScroll({ offset: -48, delay: 400 });
   return (
     <header
       css={css`
@@ -30,7 +28,7 @@ const Header = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin: 0 15px;
+          margin: 0 2vmin;
           height: 100%;
           & > svg {
             z-index: 2;

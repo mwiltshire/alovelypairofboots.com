@@ -5,9 +5,8 @@ import Home from '../components/home';
 import { Info } from '../components/info';
 import { Venue } from '../components/venue';
 import { Timetable } from '../components/timetable';
-import Gear from '../components/gear';
-import About from '../components/about';
-import Contact from '../components/contact';
+import { Gifts } from '../components/gifts';
+import { RSVP } from '../components/rsvp';
 
 const IndexPage = () => (
   <Layout>
@@ -16,8 +15,8 @@ const IndexPage = () => (
     <Info />
     <Venue />
     <Timetable />
-    <About />
-    <Contact />
+    <Gifts />
+    <RSVP />
   </Layout>
 );
 

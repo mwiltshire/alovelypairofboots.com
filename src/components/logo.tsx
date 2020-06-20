@@ -7,11 +7,15 @@ export const Logo = () => {
   const theme = useTheme<Theme>();
   return (
     <span
+      // Without display flex, the logo text is bumped
+      // a few pixels out of vertical alignment in the
+      // navbar...
       css={css`
+        display: flex;
         user-select: none;
         text-transform: uppercase;
         font-size: ${theme.fontSizes.xs};
-        letter-spacing: 0.15rem;
+        letter-spacing: 0.1rem;
         font-weight: ${theme.fontWeights.normal};
       `}
     >

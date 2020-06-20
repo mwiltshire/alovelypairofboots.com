@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { Form, Formik, Field } from 'formik';
-import { object, string, bool } from 'yup';
+import { object, string } from 'yup';
 import qs from 'qs';
+import Container from './container';
 import Input from './input';
-import Checkbox from './checkbox';
 import SubmitButton from './submit-button';
 
 type ContactFormProps = {
@@ -17,8 +17,7 @@ const initialValues = {
   'form-name': 'contact',
   name: '',
   email: '',
-  message: '',
-  gdpr: false
+  message: ''
 };
 
 const schema = object().shape({
@@ -26,11 +25,10 @@ const schema = object().shape({
   email: string()
     .email('Invalid email address!')
     .required('Required field!'),
-  message: string().required('Required field!'),
-  gdpr: bool().oneOf([true], 'Required field!')
+  message: string().required('Required field!')
 });
 
-const ContactForm: FC<ContactFormProps> = ({ onSuccess, onError }) => {
+export const ContactForm: FC<ContactFormProps> = ({ onSuccess, onError }) => {
   return (
     <Formik
       initialValues={initialValues}
@@ -55,41 +53,42 @@ const ContactForm: FC<ContactFormProps> = ({ onSuccess, onError }) => {
       validationSchema={schema}
     >
       {props => (
-        <Form
-          name="contact"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          autoComplete="off"
-        >
-          <div
-            css={css`
-              margin-bottom: 2rem;
-            `}
+        <Container>
+          <Form
+            name="contact"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            autoComplete="off"
           >
-            <Field type="hidden" name="form-name" />
-            <Field type="hidden" name="bot-field" />
-            <Input name="name" label="Name" placeholder="Jane Smith" />
-            <Input
-              name="email"
-              label="Email"
-              placeholder="jane.smith@example.com"
-            />
-            <Input
-              textarea
-              name="message"
-              label="Message"
-              placeholder="I'd love some help putting together a couple drum tracks! 🥁"
-            />
-            <Checkbox
-              name="gdpr"
-              label="I agree to having my email stored for the purpose of responding to my request"
-            />
-          </div>
-          <SubmitButton isSubmitting={props.isSubmitting}>Send</SubmitButton>
-        </Form>
+            <div
+              css={css`
+                margin-bottom: 2rem;
+                & > * + * {
+                  margin-top: 3rem;
+                }
+              `}
+            >
+              <Field type="hidden" name="form-name" />
+              <Field type="hidden" name="bot-field" />
+              <Input name="name" label="Name" placeholder="Jane Smith" />
+              <Input
+                name="email"
+                label="Email"
+                placeholder="jane.smith@example.com"
+              />
+              <Input
+                textarea
+                name="message"
+                label="Message"
+                placeholder="Please let us know if you have any special requirements, allergies, etc. Or feel free to just say hello as well! 👋"
+              />
+            </div>
+            <SubmitButton isSubmitting={props.isSubmitting}>
+              Off we go
+            </SubmitButton>
+          </Form>
+        </Container>
       )}
     </Formik>
   );
 };
-
-export default ContactForm;

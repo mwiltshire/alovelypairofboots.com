@@ -29,7 +29,7 @@ const backgroundVariants = {
 
 const navListVariants = {
   open: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 }
   },
   closed: {
     transition: { staggerChildren: 0.05, staggerDirection: -1 }
@@ -39,17 +39,13 @@ const navListVariants = {
 const navItemVariants = {
   open: {
     y: 0,
-    x: 0,
     opacity: 1,
-    rotateX: '0deg',
     transition: {
       duration: 1
     }
   },
   closed: {
     y: 50,
-    x: 25,
-    rotateX: '90deg',
     opacity: 0,
     transition: {
       duration: 1
@@ -96,6 +92,7 @@ export const MobileNav: FC<Props> = ({ items }) => {
               css={css`
                 margin: 0;
                 & li {
+                  font-family: 'Butler', sans-serif;
                   list-style: none;
                   font-size: ${theme.fontSizes['4xl']};
                   font-weight: ${theme.fontWeights.normal};

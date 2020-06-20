@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
-import { Theme } from './layout';
+import { Theme } from '../theme';
 
 type TagProps = {
   background: keyof Theme['colors'];
@@ -13,9 +13,9 @@ const Tag: FC<TagProps> = ({ background, color, children }) => {
   return (
     <span
       css={css`
-        font-size: ${theme.fontSizes.sm};
-        border-radius: 0.3rem;
-        padding: 0.3rem;
+        font-size: ${theme.fontSizes.xs};
+        font-weight: ${theme.fontWeights.bold};
+        padding: 0.5rem;
         background: ${theme.colors[background]};
         color: ${theme.colors[color]};
       `}

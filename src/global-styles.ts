@@ -214,10 +214,11 @@ export const globalStyles = css`
   }
   body {
     color: #4f4f4f;
-    font-family: Raleway, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-      Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    background-color: #f3f2f1;
+    font-family: 'CooperHewitt', -apple-system, BlinkMacSystemFont, Segoe UI,
+      Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.6;
     word-wrap: break-word;
     font-kerning: normal;

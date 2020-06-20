@@ -41,6 +41,8 @@
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.26.2",
     "smoothscroll-polyfill": "^0.4.4",
+    "typeface-butler": "0.0.44",
+    "typeface-cooper-hewitt": "0.0.44",
     "typeface-great-vibes": "0.0.72",
     "typeface-raleway": "0.0.75",
     "whatwg-fetch": "^3.0.0",

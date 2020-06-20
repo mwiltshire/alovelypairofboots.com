@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
-import Section from './section';
-import Container from './container';
+import { Section } from './section';
 import ContactForm from './contact-form';
 import Toast from './toast';
 import { Theme } from './layout';
@@ -14,20 +13,18 @@ const Contact = () => {
   );
 
   return (
-    <Section id="contact" heading="Contact" background="gray200">
-      <Container constrain>
-        <h3
-          css={css`
-            font-size: ${theme.fontSizes['4xl']};
-          `}
-        >
-          Let&rsquo;s work together
-        </h3>
-        <ContactForm
-          onSuccess={() => setSubmissionStatus('success')}
-          onError={() => setSubmissionStatus('error')}
-        />
-      </Container>
+    <Section id="contact">
+      <h3
+        css={css`
+          font-size: ${theme.fontSizes['4xl']};
+        `}
+      >
+        Let&rsquo;s work together
+      </h3>
+      <ContactForm
+        onSuccess={() => setSubmissionStatus('success')}
+        onError={() => setSubmissionStatus('error')}
+      />
       <Toast
         show={!!status}
         status={status}

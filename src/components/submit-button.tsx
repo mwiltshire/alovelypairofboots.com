@@ -3,7 +3,8 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { useTheme } from 'emotion-theming';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Theme } from './layout';
+import { Theme } from '../theme';
+import { BP_MIN_MD } from '../breakpoints';
 
 type SubmitButtonProps = {
   isSubmitting: boolean;
@@ -42,19 +43,18 @@ const SubmitButton: FC<SubmitButtonProps> = ({ isSubmitting, children }) => {
       disabled={isSubmitting}
       css={css`
         position: relative;
+        text-transform: uppercase;
+        width: 100%;
         outline: none;
         cursor: pointer;
         padding: 0.8rem 2rem;
-        border: none;
-        border-radius: 0.3rem;
-        color: ${theme.colors.white};
+        border: 1px solid #4f4f4f;
+        color: currentColor;
         font-weight: ${theme.fontWeights.bold};
-        background: #43cea2;
-        background: -webkit-linear-gradient(to right, #185a9d, #43cea2);
-        background: linear-gradient(to right, #185a9d, #43cea2);
+        background: none;
         transition: box-shadow 450ms ease;
-        &:hover {
-          box-shadow: -2px 1px 12px 1px rgba(0, 0, 0, 0.2);
+        ${BP_MIN_MD} {
+          width: auto;
         }
       `}
       type="submit"

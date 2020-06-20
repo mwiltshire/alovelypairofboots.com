@@ -4,7 +4,8 @@ import styled from '@emotion/styled';
 import { useTheme } from 'emotion-theming';
 import { motion, useAnimation } from 'framer-motion';
 import { Theme } from '../theme';
-import Container from './container';
+import { Section } from './section';
+import { MotionH2 } from './motion-h2';
 import { useAnimateInView } from '../use-animate-in-view';
 
 const wrapperVariants = {
@@ -59,64 +60,43 @@ export const Timetable = () => {
     threshold: 0.1
   });
   return (
-    <section
-      css={css`
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-        padding: 4rem 0;
-        text-align: center;
-      `}
-    >
-      <Container constrain>
-        <motion.div
-          ref={ref}
-          animate={animation}
-          variants={wrapperVariants}
-          initial="hidden"
-        >
-          <motion.h2
-            variants={headerVariants}
-            css={css`
-              text-align: center;
-              font-family: 'Great Vibes', serif;
-              font-weight: 400;
-              font-size: ${theme.fontSizes['4xl']};
-              margin-bottom: 4rem;
-            `}
-          >
-            Timetable
-          </motion.h2>
-          <motion.div variants={timeVariants}>
-            <Time>2:00 pm</Time>
-            <p>Ceremony</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>2:45 pm</Time>
-            <p>Drinks and canapés</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>4:30 pm</Time>
-            <p>Wedding breakfast</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>6:00pm</Time>
-            <p>Speeches</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>7:00 pm</Time>
-            <p>Cutting of the cake and first dance</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>9:00 pm</Time>
-            <p>Evening food</p>
-          </motion.div>
-          <motion.div variants={timeVariants}>
-            <Time>12:00 am</Time>
-            <p>Carriages/afterparty</p>
-          </motion.div>
+    <Section id="timetable" styles={css('text-align: center;')}>
+      <motion.div
+        ref={ref}
+        animate={animation}
+        variants={wrapperVariants}
+        initial="hidden"
+      >
+        <MotionH2 variants={headerVariants}>Timetable</MotionH2>
+        <motion.div variants={timeVariants}>
+          <Time>2:00 pm</Time>
+          <p>Ceremony</p>
         </motion.div>
-      </Container>
-    </section>
+        <motion.div variants={timeVariants}>
+          <Time>2:45 pm</Time>
+          <p>Drinks and canapés</p>
+        </motion.div>
+        <motion.div variants={timeVariants}>
+          <Time>4:30 pm</Time>
+          <p>Wedding breakfast</p>
+        </motion.div>
+        <motion.div variants={timeVariants}>
+          <Time>6:00pm</Time>
+          <p>Speeches</p>
+        </motion.div>
+        <motion.div variants={timeVariants}>
+          <Time>7:00 pm</Time>
+          <p>Cutting of the cake and first dance</p>
+        </motion.div>
+        <motion.div variants={timeVariants}>
+          <Time>9:00 pm</Time>
+          <p>Evening food</p>
+        </motion.div>
+        <motion.div variants={timeVariants}>
+          <Time>12:00 am</Time>
+          <p>Carriages/afterparty</p>
+        </motion.div>
+      </motion.div>
+    </Section>
   );
 };
