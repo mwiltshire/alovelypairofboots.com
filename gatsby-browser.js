@@ -1,7 +1,8 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/browser-apis/
- */
+import smoothscroll from 'smoothscroll-polyfill';
 
-// You can delete this file if you're not using it
+import '@fontsource/amatic-sc';
+import '@fontsource/raleway';
+
+export const onClientEntry = () => {
+  smoothscroll.polyfill();
+};
