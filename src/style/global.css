@@ -1,15 +1,8 @@
 :root {
   --black: #4f4f4f;
-  --black-rgb: 0, 0, 0;
   --white: #fff9f9;
-  --white-rgb: 255, 249, 249;
-  --tomato: tomato;
-  --tomato-rgb: 255, 99, 71;
   --beige: #f7f2df;
-  --beige-rgb: 245, 245, 220;
-  --cyan: cyan;
-  --cyan-rgb: 0, 255, 255;
-  --focus-color: dodgerblue;
+  --green: #a9c79f;
 }
 
 * {
@@ -28,6 +21,7 @@ html {
   font-size: 16px;
   font-weight: 500;
   color: var(--black);
+  line-height: 1.6;
 }
 
 body {
