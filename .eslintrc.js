@@ -27,6 +27,7 @@ module.exports = {
   },
   rules: {
     'react/prop-types': 'off',
+    'react/display-name': 'off',
     'prettier/explicit-function-return-type': 'off',
     'prettier/no-explicit-any': 'off',
     'react-hooks/rules-of-hooks': 'error',
