@@ -12,8 +12,10 @@ export function Venue() {
       <SectionCard>
         <Stack align="center">
           <Heading level={2}>Venue</Heading>
-          <Box as="p">Bore Place</Box>
           <Box as="p" textAlign="center">
+            <Box as="span" fontWeight="700">
+              Bore Place
+            </Box>
             <AddressLine>Bore Place Road </AddressLine>
             <AddressLine>Chiddingstone</AddressLine>
             <AddressLine>Edenbridge</AddressLine>
