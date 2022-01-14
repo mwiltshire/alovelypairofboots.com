@@ -30,8 +30,8 @@ const RadioButtonOuter = styled.span`
 
 const RadioButtonInner = styled.span`
   border-radius: 50%;
-  height: 90%;
-  width: 90%;
+  height: 70%;
+  width: 70%;
   background-color: var(--green);
 `;
 

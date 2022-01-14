@@ -13,4 +13,7 @@ export function Label({ children, inline = false }: LabelProps) {
 export const StyledLabel = styled.label<{ inline: boolean }>`
   display: ${({ inline }) => (inline ? 'inline-flex' : 'block')};
   align-items: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
 `;
