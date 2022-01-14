@@ -21,5 +21,6 @@ export function Card({ children }: CardProps) {
 
 const StyledCard = styled(Box)`
   border: 1px solid var(--black);
-  box-shadow: -1px 1px 0px 2px var(--white);
+  box-shadow: -2px 2px 0px 0px var(--white),
+    0px 0px 15px 3px rgba(0, 0, 0, 0.05);
 `;
