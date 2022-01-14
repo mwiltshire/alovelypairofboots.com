@@ -1,17 +1,27 @@
 interface ScrollOptions {
-  offset?: number;
   delay?: number;
   behavior?: 'smooth' | 'auto';
 }
 
 export function createScrollTo({
-  offset = 0,
   delay = 0,
   behavior = 'smooth'
 }: ScrollOptions = {}) {
   return (hash: string) => {
-    const element = document.querySelector(hash);
-    const top = element ? (element as HTMLElement).offsetTop + offset : 0;
+    const viewportHeight = window.innerHeight;
+    const section = document.querySelector(hash);
+
+    const sectionCard = section?.firstElementChild;
+    const sectionCardHeight = sectionCard?.clientHeight || 0;
+
+    const isCardFillingSection = viewportHeight - sectionCardHeight < 200;
+
+    const offset = isCardFillingSection ? -105 : 0;
+
+    const top = isCardFillingSection
+      ? (sectionCard as HTMLElement).offsetTop + offset
+      : (section as HTMLElement).offsetTop + offset;
+
     window.setTimeout(
       () =>
         window.scrollTo({
