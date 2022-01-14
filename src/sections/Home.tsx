@@ -52,11 +52,17 @@ const StyledSection = styled(Section)`
 const Flower1Wrapper = styled(Box)`
   z-index: -1;
   top: -50%;
-  left: -30%;
+  left: 0;
+  @media (min-width: 1024px) {
+    left: -30%;
+  }
 `;
 
 const Flower2Wrapper = styled(Box)`
   z-index: -1;
   bottom: -50%;
-  right: -30%;
+  right: 0;
+  @media (min-width: 1024px) {
+    right: -30%;
+  }
 `;

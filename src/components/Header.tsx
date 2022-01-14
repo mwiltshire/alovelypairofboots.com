@@ -1,9 +1,12 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Box } from './Box';
+import { MobileNavMenuList } from './MobileNavMenuList';
 import { createScrollTo } from '../utils/scrollTo';
 
 import '../style/global.css';
+import { DesktopNavMenuList } from './DesktopNavMenuList';
+import { MenuButton } from './MenuButton';
 
 const scrollTo = createScrollTo();
 
@@ -17,14 +20,17 @@ const navItems = [
 ];
 
 export function Header() {
+  const [isMobileMenuExpanded, setIsMobileMenuExpanded] = useState(false);
+
   return (
     <StyledHeader
       as="header"
       display="flex"
       alignItems="center"
-      px="0.5rem"
+      px="1rem"
       position="fixed"
       width="100%"
+      zIndex="1"
     >
       <Box
         as="nav"
@@ -35,42 +41,25 @@ export function Header() {
       >
         <Logo
           as="a"
-          href="#"
+          p="0.5rem"
+          color="inherit"
+          display="flex"
+          alignItems="center"
+          href="/"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
             scrollTo('#home');
           }}
-          p="0.5rem"
-          m="0.5rem"
-          color="inherit"
         >
           A lovely pair of boots
         </Logo>
-        <NavList
-          as="ul"
-          display="flex"
-          flexDirection="row"
-          alignItems="center"
-          p="0"
-          m="0"
-        >
-          {navItems.map(i => (
-            <Box as="li" key={i} m="0.5rem">
-              <NavLink
-                as="a"
-                href={`#${i.toLowerCase()}`}
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  e.preventDefault();
-                  scrollTo(`#${i.toLowerCase()}`);
-                }}
-                p="0.5rem"
-                color="inherit"
-              >
-                {i}
-              </NavLink>
-            </Box>
-          ))}
-        </NavList>
+        <MobileNavMenuList
+          items={navItems}
+          isExpanded={isMobileMenuExpanded}
+          onNavItemClick={() => setIsMobileMenuExpanded(false)}
+        />
+        <DesktopNavMenuList items={navItems} />
+        <MenuButton onClick={() => setIsMobileMenuExpanded(prev => !prev)} />
       </Box>
     </StyledHeader>
   );
@@ -80,21 +69,9 @@ const StyledHeader = styled(Box)`
   height: 4rem;
 `;
 
-const NavList = styled(Box)`
-  list-style: none;
-`;
-
-const NavLink = styled(Box)`
-  cursor: pointer;
-  text-decoration: none;
-  &:hover {
-    background-color: var(--white);
-    box-shadow: 0px 0px 0px 1px var(--black);
-  }
-`;
-
 const Logo = styled(Box)`
   user-select: none;
   cursor: pointer;
   text-decoration: none;
+  z-index: 3;
 `;
