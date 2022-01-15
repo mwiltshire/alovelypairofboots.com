@@ -1,9 +1,19 @@
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://www.alovelypairofboots.com',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV
+} = process.env;
+
+const isNetlifyProduction = NETLIFY_ENV === 'production';
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
   siteMetadata: {
     title: 'A Lovely Pair Of Boots',
     description:
-      "Shauna & Chris are getting married. You're gonna wanna be there.",
-    siteUrl: 'https://www.alovelypairofboots.com',
+      "Shauna & Chris are getting married. You're going to want to be there.",
+    siteUrl,
     author: ''
   },
   plugins: [
@@ -21,18 +31,36 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'A Lovely Pair of Boots',
+        short_name: 'ALPOB',
         start_url: '/',
-        background_color: '#663399',
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: '#663399',
+        background_color: '#f7f2df',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png' // This path is relative to the root of the site.
+        icon: 'src/images/favicon.png'
       }
     },
     'gatsby-plugin-offline',
-    'gatsby-plugin-postcss'
+    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: '*' }]
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          }
+        }
+      }
+    }
   ]
 };
