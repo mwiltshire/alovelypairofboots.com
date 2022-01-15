@@ -13,7 +13,7 @@ export function DesktopNavMenuList({ items }: DesktopNavMenuListProps) {
       {items.map(item => (
         <li key={item} className="m-2">
           <a
-            className="p-2 text-inherit cursor-pointer no-underline hover:bg-white"
+            className="p-2 text-inherit cursor-pointer no-underline hover:bg-white hover:shadow-[0px_0px_0px_1px_var(--black)_inset]"
             href={`#${item.toLowerCase()}`}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
