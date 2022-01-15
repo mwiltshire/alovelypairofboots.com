@@ -6,7 +6,7 @@ interface CardProps {
 
 export function Card({ children }: CardProps) {
   return (
-    <div className="relative p-12 w-full bg-white border-solid-black shadow-card">
+    <div className="relative py-8 px-6 md:px-12 w-full bg-white border-solid-black shadow-card">
       {children}
     </div>
   );

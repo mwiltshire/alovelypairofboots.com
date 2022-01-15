@@ -13,7 +13,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <div className="relative">
         <input
-          className={`w-full p-2 text-inherit outline-none text-sm ${borderClass} placeholder:text-gray`}
+          className={`w-full p-2 text-inherit outline-none text-base rounded-none ${borderClass} placeholder:text-gray`}
           type="text"
           ref={ref}
           {...rest}

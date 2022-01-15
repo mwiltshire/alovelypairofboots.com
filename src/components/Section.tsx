@@ -7,7 +7,7 @@ interface SectionProps {
 
 export function Section({ children, id }: SectionProps) {
   return (
-    <section className="flex items-center min-h-screen" id={id}>
+    <section className="flex items-center min-h-screen py-16" id={id}>
       {children}
     </section>
   );
