@@ -11,7 +11,7 @@ export function Layout({ children }: LayoutProps) {
     <>
       <Seo />
       <Header />
-      <main className="overflow-hidden">{children}</main>
+      <main className="overflow-hidden px-12 md:p-0">{children}</main>
     </>
   );
 }

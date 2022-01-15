@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-beige text-black;
+    @apply bg-beige text-black text-sm md:text-base;
   }
 
   h2 {
