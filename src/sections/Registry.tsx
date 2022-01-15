@@ -15,6 +15,17 @@ export function Registry() {
             If you’d still like to contribute to our registry or honeymoon
             funds, please select from the options below.
           </p>
+          <a
+            className="btn"
+            href="https://prezola.com/wishlists/10205845/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://static.prezola.com/staticfiles/img/black_logo.svg"
+              alt="Prezola logo"
+            />
+          </a>
         </div>
       </SectionCard>
     </Section>
