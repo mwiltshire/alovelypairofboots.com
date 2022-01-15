@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Box } from './Box';
 import { MobileNavMenuList } from './MobileNavMenuList';
 import { createScrollTo } from '../utils/scrollTo';
-
-import '../style/global.css';
 import { DesktopNavMenuList } from './DesktopNavMenuList';
 import { MenuButton } from './MenuButton';
 
@@ -23,28 +19,10 @@ export function Header() {
   const [isMobileMenuExpanded, setIsMobileMenuExpanded] = useState(false);
 
   return (
-    <StyledHeader
-      as="header"
-      display="flex"
-      alignItems="center"
-      px="1rem"
-      position="fixed"
-      width="100%"
-      zIndex="1"
-    >
-      <Box
-        as="nav"
-        display="flex"
-        flexDirection="row"
-        justifyContent="space-between"
-        width="100%"
-      >
-        <Logo
-          as="a"
-          p="0.5rem"
-          color="inherit"
-          display="flex"
-          alignItems="center"
+    <header className="fixed top-0 flex px-4 h-16 w-full z-10 font-handwritten text-xl">
+      <nav className="flex flex-row justify-between w-full">
+        <a
+          className="flex items-center text-inherit p-2 select-none cursor-pointer no-undeline z-30"
           href="/"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
@@ -52,7 +30,7 @@ export function Header() {
           }}
         >
           A lovely pair of boots
-        </Logo>
+        </a>
         <MobileNavMenuList
           items={navItems}
           isExpanded={isMobileMenuExpanded}
@@ -60,18 +38,7 @@ export function Header() {
         />
         <DesktopNavMenuList items={navItems} />
         <MenuButton onClick={() => setIsMobileMenuExpanded(prev => !prev)} />
-      </Box>
-    </StyledHeader>
+      </nav>
+    </header>
   );
 }
-
-const StyledHeader = styled(Box)`
-  height: 4rem;
-`;
-
-const Logo = styled(Box)`
-  user-select: none;
-  cursor: pointer;
-  text-decoration: none;
-  z-index: 3;
-`;

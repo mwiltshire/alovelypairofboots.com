@@ -1,7 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { Box } from '../components/Box';
-import { buttonStyles } from '../components/Button';
 
 interface LinkButtonProps {
   children: React.ReactNode;
@@ -11,19 +8,12 @@ interface LinkButtonProps {
 
 export function LinkButton({ children, href, onClick }: LinkButtonProps) {
   return (
-    <StyledLinkButton
-      as="a"
+    <a
+      className="font-handwritten text-xl text-inherit btn"
       href={href}
       onClick={onClick}
-      fontFamily="'Amatic SC', sans-serif"
-      fontSize="1.25rem"
-      color="inherit"
     >
       {children}
-    </StyledLinkButton>
+    </a>
   );
 }
-
-const StyledLinkButton = styled(Box)`
-  ${buttonStyles}
-`;

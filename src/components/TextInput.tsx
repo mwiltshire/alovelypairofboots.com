@@ -1,49 +1,29 @@
 import * as React from 'react';
-import styled, { StyledComponentProps } from 'styled-components';
-import { Box } from './Box';
 
-interface TextInputProps {
+interface TextInputProps extends React.ComponentProps<'input'> {
   validationError?: string;
 }
 
-export const TextInput = React.forwardRef<
-  HTMLInputElement,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  StyledComponentProps<'input', any, {}, never> & TextInputProps
->(({ validationError, ...rest }, ref) => {
-  return (
-    <Box position="relative">
-      <StyledTextInput
-        type="text"
-        ref={ref}
-        invalid={Boolean(validationError)}
-        {...rest}
-      />
-      {validationError && (
-        <Box
-          position="absolute"
-          right="0"
-          p="0.15rem 0.25rem"
-          color="var(--white)"
-          backgroundColor="var(--red)"
-        >
-          {validationError}
-        </Box>
-      )}
-    </Box>
-  );
-});
+export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+  ({ validationError, ...rest }, ref) => {
+    const borderClass = validationError
+      ? 'border-solid-red'
+      : 'border-solid-black';
 
-const StyledTextInput = styled.input<{ invalid: boolean }>`
-  width: 100%;
-  outline: none;
-  padding: 0.5rem;
-  margin: 0;
-  font-family: inherit;
-  font-size: 0.85rem;
-  border: 1px solid
-    ${({ invalid }) => (invalid ? 'var(--red)' : 'var(--black)')};
-  &::placeholder {
-    color: var(--gray);
+    return (
+      <div className="relative">
+        <input
+          className={`w-full p-2 text-inherit outline-none text-sm ${borderClass} placeholder:text-gray`}
+          type="text"
+          ref={ref}
+          {...rest}
+        />
+        {validationError && (
+          <div className="absolute right-0 p-1 text-white bg-red">
+            {validationError}
+          </div>
+        )}
+      </div>
+    );
   }
-`;
+);

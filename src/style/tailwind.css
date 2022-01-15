@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-beige text-black;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply cursor-pointer no-underline bg-white w-fit py-3 px-8 transition-shadow duration-300 hover:shadow-btn border-solid-black;
+  }
+
+  .stack {
+    @apply flex flex-col;
+  }
+
+  .stack-row {
+    @apply flex flex-row;
+  }
+
+  .stack > * + * {
+    @apply mt-4;
+  }
+
+  .stack-gap-lg > * + * {
+    @apply mt-8;
+  }
+
+  .stack-row > * + * {
+    @apply ml-4;
+  }
+}
+
+@layer utilities {
+  .border-solid-black {
+    @apply border border-solid border-black;
+  }
+
+  .border-solid-red {
+    @apply border border-solid border-red;
+  }
+}

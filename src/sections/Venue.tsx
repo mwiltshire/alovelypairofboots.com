@@ -2,32 +2,23 @@ import * as React from 'react';
 import { Section } from '../components/Section';
 import { SectionCard } from '../components/SectionCard';
 import { Heading } from '../components/Heading';
-import { Box } from '../components/Box';
-import { Stack } from '../components/Stack';
-import styled from 'styled-components';
 
 export function Venue() {
   return (
     <Section id="venue">
       <SectionCard>
-        <Stack align="center">
+        <div className="stack items-center">
           <Heading level={2}>Venue</Heading>
-          <Box as="p" textAlign="center">
-            <Box as="span" fontWeight="700">
-              Bore Place
-            </Box>
-            <AddressLine>Bore Place Road </AddressLine>
-            <AddressLine>Chiddingstone</AddressLine>
-            <AddressLine>Edenbridge</AddressLine>
-            <AddressLine>TN8 7AR</AddressLine>
-          </Box>
-          <Box as="a">View on map</Box>
-        </Stack>
+          <p className="text-center">
+            <span className="font-bold">Bore Place</span>
+            <span className="block">Bore Place Road </span>
+            <span className="block">Chiddingstone</span>
+            <span className="block">Edenbridge</span>
+            <span className="block">TN8 7AR</span>
+          </p>
+          <a href="/">View on map</a>
+        </div>
       </SectionCard>
     </Section>
   );
 }
-
-const AddressLine = styled.span`
-  display: block;
-`;

@@ -2,10 +2,7 @@ import * as React from 'react';
 import { Section } from '../components/Section';
 import { Card } from '../components/Card';
 import { Heading } from '../components/Heading';
-import { Box } from '../components/Box';
 import { LinkButton } from '../components/LinkButton';
-import { Stack } from '../components/Stack';
-import styled from 'styled-components';
 import { Flower1 } from '../components/Flower1';
 import { Flower2 } from '../components/Flower2';
 import { createScrollTo } from '../utils/scrollTo';
@@ -14,21 +11,21 @@ const scrollTo = createScrollTo();
 
 export function Home() {
   return (
-    <StyledSection id="home">
+    <Section id="home">
       <Card>
-        <Flower1Wrapper position="absolute">
+        <div className="absolute -z-10 top-[-50%] left-0 md:left-[-30%]">
           <Flower1 />
-        </Flower1Wrapper>
-        <Flower2Wrapper position="absolute">
+        </div>
+        <div className="absolute -z-10 bottom-[-50%] right-0 md:right-[-30%]">
           <Flower2 />
-        </Flower2Wrapper>
-        <Stack align="center" gap="2rem">
-          <Heading level={1} textAlign="center">
-            <Box fontSize="4rem" as="span" display="block" marginBottom="1rem">
-              Shauna & Chris
-            </Box>{' '}
-            are getting married on <br />
-            Tuesday 23rd August 2022
+        </div>
+        <div className="stack stack-gap-lg items-center">
+          <Heading level={1}>
+            <span className="block text-center text-2xl">
+              <span className="block text-6xl mb-8">Shauna & Chris</span> are
+              getting married on <br />
+              Tuesday 23rd August 2022
+            </span>
           </Heading>
           <LinkButton
             href="#rsvp"
@@ -39,30 +36,8 @@ export function Home() {
           >
             RSVP
           </LinkButton>
-        </Stack>
+        </div>
       </Card>
-    </StyledSection>
+    </Section>
   );
 }
-
-const StyledSection = styled(Section)`
-  margin-top: -4rem;
-`;
-
-const Flower1Wrapper = styled(Box)`
-  z-index: -1;
-  top: -50%;
-  left: 0;
-  @media (min-width: 1024px) {
-    left: -30%;
-  }
-`;
-
-const Flower2Wrapper = styled(Box)`
-  z-index: -1;
-  bottom: -50%;
-  right: 0;
-  @media (min-width: 1024px) {
-    right: -30%;
-  }
-`;

@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { Box } from './Box';
 import { createScrollTo } from '../utils/scrollTo';
 
 interface MobileNavMenuListProps {
@@ -33,51 +31,22 @@ export function MobileNavMenuList({
   // }, [isExpanded]);
 
   return isExpanded ? (
-    <NavList as="ul">
-      {items.map(i => (
-        <Box as="li" key={i} m="0.5rem">
-          <NavLink
-            as="a"
-            href={`#${i.toLowerCase()}`}
+    <ul className="fixed inset-0 flex lg:none items-center justify-center flex-col bg-white z-20 list-none m-0 p-4 text-5xl">
+      {items.map(item => (
+        <li key={item} className="m-2">
+          <a
+            className="cursor-pointer no-underline p-2 text-inherit"
+            href={`#${item.toLowerCase()}`}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
               onNavItemClick();
-              scrollTo(`#${i.toLowerCase()}`);
+              scrollTo(`#${item.toLowerCase()}`);
             }}
-            p="0.5rem"
-            color="inherit"
           >
-            {i}
-          </NavLink>
-        </Box>
+            {item}
+          </a>
+        </li>
       ))}
-    </NavList>
+    </ul>
   ) : null;
 }
-
-const NavList = styled(Box)`
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  inset: 0;
-  background-color: var(--white);
-  z-index: 2;
-  list-style: none;
-  margin: 0;
-  padding: 1rem;
-  font-size: 3rem;
-  @media (min-width: 1024px) {
-    display: none;
-  }
-`;
-
-const NavLink = styled(Box)`
-  cursor: pointer;
-  text-decoration: none;
-  &:hover {
-    background-color: var(--white);
-    box-shadow: 0px 0px 0px 1px var(--black);
-  }
-`;

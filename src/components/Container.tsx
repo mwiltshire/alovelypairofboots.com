@@ -1,16 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import { flexbox, FlexboxProps } from 'styled-system';
-import { Box } from './Box';
 
-interface ContainerProps extends FlexboxProps {
+interface ContainerProps {
   children: React.ReactNode;
 }
 
 export function Container({ children }: ContainerProps) {
   return (
-    <Box position="relative" px="1rem" m="0 auto" width="100%" maxWidth="30rem">
-      {children}
-    </Box>
+    <div className="relative px-4 mt-0 mx-auto w-full max-w-lg">{children}</div>
   );
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Seo } from './Seo';
-import { Box } from './Box';
 import { Header } from './Header';
 
 interface LayoutProps {
@@ -12,7 +11,7 @@ export function Layout({ children }: LayoutProps) {
     <>
       <Seo />
       <Header />
-      <Box as="main">{children}</Box>
+      <main>{children}</main>
     </>
   );
 }

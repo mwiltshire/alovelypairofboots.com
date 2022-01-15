@@ -1,6 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { Box } from './Box';
 import { createScrollTo } from '../utils/scrollTo';
 
 interface DesktopNavMenuListProps {
@@ -11,42 +9,21 @@ const scrollTo = createScrollTo();
 
 export function DesktopNavMenuList({ items }: DesktopNavMenuListProps) {
   return (
-    <NavList as="ul" p="0" m="0">
-      {items.map(i => (
-        <Box as="li" key={i} m="0.5rem">
-          <NavLink
-            as="a"
-            href={`#${i.toLowerCase()}`}
+    <ul className="hidden list-none p-0 m-0 md:flex flex-row items-center">
+      {items.map(item => (
+        <li key={item} className="m-2">
+          <a
+            className="p-2 text-inherit cursor-pointer no-underline hover:bg-white"
+            href={`#${item.toLowerCase()}`}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.preventDefault();
-              scrollTo(`#${i.toLowerCase()}`);
+              scrollTo(`#${item.toLowerCase()}`);
             }}
-            p="0.5rem"
-            color="inherit"
           >
-            {i}
-          </NavLink>
-        </Box>
+            {item}
+          </a>
+        </li>
       ))}
-    </NavList>
+    </ul>
   );
 }
-
-const NavList = styled(Box)`
-  display: none;
-  list-style: none;
-  @media (min-width: 1024px) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-`;
-
-const NavLink = styled(Box)`
-  cursor: pointer;
-  text-decoration: none;
-  &:hover {
-    background-color: var(--white);
-    box-shadow: 0px 0px 0px 1px var(--black);
-  }
-`;

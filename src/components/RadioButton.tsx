@@ -1,48 +1,22 @@
 import * as React from 'react';
-import styled, { StyledComponentProps } from 'styled-components';
-import { Box } from './Box';
 
 export const RadioButton = React.forwardRef<
   HTMLInputElement,
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  StyledComponentProps<'input', any, {}, never>
+  Omit<React.ComponentProps<'input'>, 'type'>
 >((props, ref) => {
   return (
-    <Box position="relative">
-      <RadioButtonOuter>
-        {props.checked && <RadioButtonInner />}
-      </RadioButtonOuter>
-      <StyledInput ref={ref} type="radio" {...props} />
-    </Box>
+    <div className="relative">
+      <span className="flex items-center justify-center rounded-full h-5 w-5 border-solid-black mr-1">
+        {props.checked && (
+          <span className="bg-green rounded-full h-4/6 w-4/6" />
+        )}
+      </span>
+      <input
+        className="absolute inset-0 h-5 w-5 opacity-0 cursor-pointer"
+        ref={ref}
+        type="radio"
+        {...props}
+      />
+    </div>
   );
 });
-
-const RadioButtonOuter = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  height: 1.3rem;
-  width: 1.3rem;
-  border: 1px solid var(--black);
-  margin-right: 0.25rem;
-`;
-
-const RadioButtonInner = styled.span`
-  border-radius: 50%;
-  height: 70%;
-  width: 70%;
-  background-color: var(--green);
-`;
-
-const StyledInput = styled.input`
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 1.3rem;
-  width: 1.3rem;
-  opacity: 0;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-`;

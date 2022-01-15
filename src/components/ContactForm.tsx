@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { Label } from './Label';
-import { Box } from './Box';
 import { TextInput } from './TextInput';
 import { RadioButton } from './RadioButton';
 import { Textarea } from './Textarea';
-import { Stack } from './Stack';
 import { Button } from './Button';
 
 interface FormFields {
@@ -39,13 +37,12 @@ export function ContactForm() {
   const rsvp = watch('rsvp');
 
   return (
-    <Box
-      as="form"
+    <form
+      className="w-full"
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
-      width="100%"
     >
-      <Stack>
+      <div className="stack">
         <Label>
           Name/s
           <TextInput
@@ -72,14 +69,14 @@ export function ContactForm() {
             })}
           />
         </Label>
-        <Stack direction="row">
+        <div className="stack-row items-center">
           <Label inline>
             <RadioButton
               value="coming"
               checked={rsvp === 'coming'}
               {...register('rsvp')}
             />
-            <Box as="span">Coming</Box>
+            Coming
           </Label>
           <Label inline>
             <RadioButton
@@ -87,9 +84,9 @@ export function ContactForm() {
               checked={rsvp === 'not-coming'}
               {...register('rsvp')}
             />
-            <Box as="span">Not coming</Box>
+            Not coming
           </Label>
-        </Stack>
+        </div>
         {rsvp === 'coming' && (
           <Label>
             Dietary requirements
@@ -107,7 +104,7 @@ export function ContactForm() {
           />
         </Label>
         <Button type="submit">Submit</Button>
-      </Stack>
-    </Box>
+      </div>
+    </form>
   );
 }

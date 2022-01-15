@@ -1,23 +1,14 @@
 import * as React from 'react';
-import { Box } from '../components/Box';
 
 interface SectionProps {
   children: React.ReactNode;
   id: string;
-  className?: string;
 }
 
-export function Section({ children, id, className }: SectionProps) {
+export function Section({ children, id }: SectionProps) {
   return (
-    <Box
-      as="section"
-      id={id}
-      display="flex"
-      alignItems="center"
-      minHeight="100vh"
-      className={className}
-    >
+    <section className="flex items-center min-h-screen" id={id}>
       {children}
-    </Box>
+    </section>
   );
 }

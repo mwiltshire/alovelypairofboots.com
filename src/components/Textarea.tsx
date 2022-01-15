@@ -1,17 +1,14 @@
-import styled from 'styled-components';
+import * as React from 'react';
 
-export const Textarea = styled.textarea`
-  width: 100%;
-  outline: none;
-  padding: 0.5rem;
-  margin: 0;
-  resize: none;
-  min-height: 5rem;
-  font-family: inherit;
-  font-size: 0.85rem;
-  border: 1px solid var(--black);
-  line-height: inherit;
-  &::placeholder {
-    color: var(--gray);
-  }
-`;
+export const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<'textarea'>
+>((props, ref) => {
+  return (
+    <textarea
+      className="w-full outline-none p-2 resize-none min-h-[5rem] text-inherit text-sm border-solid-black placeholder:text-gray"
+      ref={ref}
+      {...props}
+    />
+  );
+});
