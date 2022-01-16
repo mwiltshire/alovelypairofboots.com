@@ -19,7 +19,7 @@ export function Header() {
   const [isMobileMenuExpanded, setIsMobileMenuExpanded] = useState(false);
 
   return (
-    <header className="fixed top-0 flex px-4 h-16 w-full z-10 font-handwritten text-2xl md:text-xl bg-beige md:bg-none">
+    <header className="fixed top-0 flex px-4 h-16 w-full z-10 font-handwritten text-2xl md:text-xl bg-beige">
       <nav className="flex flex-row justify-between w-full">
         <a
           className="flex items-center text-inherit select-none cursor-pointer no-undeline z-30 font-bold md:font-normal"
