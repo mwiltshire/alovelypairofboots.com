@@ -11,7 +11,7 @@ const scrollTo = createScrollTo();
 
 export function Home() {
   return (
-    <Section id="home">
+    <Section id="home" fullHeight>
       <Card>
         <div className="absolute -z-10 top-[-50%] left-0 md:left-[-30%]">
           <Flower1 />

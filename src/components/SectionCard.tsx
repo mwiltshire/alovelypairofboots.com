@@ -10,10 +10,10 @@ interface SectionCardProps {
 export function SectionCard({ children }: SectionCardProps) {
   return (
     <Card>
-      <div className="absolute top-[-54px] left-[-59px]">
+      <div className="absolute hidden md:block h-28 top-[-54px] left-[-59px]">
         <Flower3 />
       </div>
-      <div className="absolute bottom-[-61px] right-[-51px]">
+      <div className="absolute hidden md:block h-28 bottom-[-61px] right-[-51px]">
         <Flower4 />
       </div>
       {children}
