@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { Label } from './Label';
 import { TextInput } from './TextInput';
 import { RadioButton } from './RadioButton';
@@ -22,17 +23,32 @@ const EMAIL_REGEX_PATTERN =
 const REQUIRED_FIELD_ERROR_MESSAGE = 'This field is required!';
 const INVALID_EMAIL_ERROR_MESSAGE = 'Invalid e-mail!';
 
+async function submitForm() {
+  return new Promise(res => {
+    setTimeout(res, 3000);
+  });
+}
+
 export function ContactForm() {
   const {
     register,
     watch,
     handleSubmit,
-    formState: { errors }
+    reset,
+    formState: { errors, isSubmitting }
   } = useForm<FormFields>({
     defaultValues: { rsvp: 'coming' }
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async () => {
+    try {
+      await submitForm();
+      reset();
+      toast.success('Got it! Thanks for responding!');
+    } catch {
+      toast.error("Oh no! That didn't work, try again!");
+    }
+  };
 
   const rsvp = watch('rsvp');
 
@@ -103,7 +119,9 @@ export function ContactForm() {
             {...register('comments')}
           />
         </Label>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
+          Submit
+        </Button>
       </div>
     </form>
   );
