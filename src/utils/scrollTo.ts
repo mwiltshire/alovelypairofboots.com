@@ -8,19 +8,26 @@ export function createScrollTo({
   behavior = 'smooth'
 }: ScrollOptions = {}) {
   return (hash: string) => {
-    const viewportHeight = window.innerHeight;
+    let top: number;
+    const { matches } = window.matchMedia('(min-width: 768px)');
     const section = document.querySelector(hash);
 
-    const sectionCard = section?.firstElementChild;
-    const sectionCardHeight = sectionCard?.clientHeight || 0;
+    if (matches) {
+      const viewportHeight = window.innerHeight;
 
-    const isCardFillingSection = viewportHeight - sectionCardHeight < 200;
+      const sectionCard = section?.firstElementChild;
+      const sectionCardHeight = sectionCard?.clientHeight || 0;
 
-    const offset = isCardFillingSection ? -105 : 0;
+      const isCardFillingSection = viewportHeight - sectionCardHeight < 200;
 
-    const top = isCardFillingSection
-      ? (sectionCard as HTMLElement).offsetTop + offset
-      : (section as HTMLElement).offsetTop + offset;
+      const offset = isCardFillingSection ? -105 : 0;
+
+      top = isCardFillingSection
+        ? (sectionCard as HTMLElement).offsetTop + offset
+        : (section as HTMLElement).offsetTop + offset;
+    } else {
+      top = (section as HTMLElement).offsetTop;
+    }
 
     window.setTimeout(
       () =>
