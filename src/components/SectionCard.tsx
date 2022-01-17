@@ -35,12 +35,18 @@ export function SectionCard({ children }: SectionCardProps) {
       viewport={{ once: false }}
     >
       <Card>
-        <div className="absolute hidden md:block h-28 top-[-54px] left-[-59px]">
+        <motion.div
+          className="absolute hidden md:block h-28 top-[-54px] left-[-59px]"
+          layout
+        >
           <Flower3 />
-        </div>
-        <div className="absolute hidden md:block h-28 bottom-[-61px] right-[-51px]">
+        </motion.div>
+        <motion.div
+          className="absolute hidden md:block h-28 bottom-[-61px] right-[-51px]"
+          layout
+        >
           <Flower4 />
-        </div>
+        </motion.div>
         {children}
       </Card>
     </motion.div>
