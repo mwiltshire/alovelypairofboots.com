@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { motion } from 'framer-motion';
 import { createScrollTo } from '../utils/scrollTo';
 
 interface DesktopNavMenuListProps {
@@ -7,11 +8,31 @@ interface DesktopNavMenuListProps {
 
 const scrollTo = createScrollTo();
 
+const variants = {
+  initial: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const listItemVariants = {
+  initial: { y: -25 },
+  show: { y: 0 }
+};
+
 export function DesktopNavMenuList({ items }: DesktopNavMenuListProps) {
   return (
-    <ul className="hidden list-none p-0 m-0 md:flex flex-row items-center">
+    <motion.ul
+      className="hidden list-none p-0 m-0 md:flex flex-row items-center"
+      variants={variants}
+      initial="initial"
+      animate="show"
+    >
       {items.map(item => (
-        <li key={item} className="m-2">
+        <motion.li key={item} className="m-2" variants={listItemVariants}>
           <a
             className="p-2 text-inherit cursor-pointer no-underline hover:bg-white hover:shadow-[0px_0px_0px_1px_var(--black)_inset]"
             href={`#${item.toLowerCase()}`}
@@ -22,8 +43,8 @@ export function DesktopNavMenuList({ items }: DesktopNavMenuListProps) {
           >
             {item}
           </a>
-        </li>
+        </motion.li>
       ))}
-    </ul>
+    </motion.ul>
   );
 }

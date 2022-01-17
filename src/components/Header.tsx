@@ -26,6 +26,7 @@ export function Header() {
           href="/"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
+            setIsMobileMenuExpanded(false);
             scrollTo('#home');
           }}
         >

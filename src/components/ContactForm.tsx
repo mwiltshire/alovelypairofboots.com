@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Label } from './Label';
@@ -59,33 +60,40 @@ export function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="stack">
-        <Label>
-          Name/s
-          <TextInput
-            type="text"
-            placeholder="John and Jane Smith"
-            validationError={errors.name?.message}
-            {...register('name', {
-              required: { value: true, message: REQUIRED_FIELD_ERROR_MESSAGE }
-            })}
-          />
-        </Label>
-        <Label>
-          E-mail
-          <TextInput
-            type="text"
-            placeholder="jane.smith@example.com"
-            validationError={errors.email?.message}
-            {...register('email', {
-              required: { value: true, message: REQUIRED_FIELD_ERROR_MESSAGE },
-              pattern: {
-                value: EMAIL_REGEX_PATTERN,
-                message: INVALID_EMAIL_ERROR_MESSAGE
-              }
-            })}
-          />
-        </Label>
-        <div className="stack-row items-center">
+        <motion.div layout>
+          <Label>
+            Name/s
+            <TextInput
+              type="text"
+              placeholder="John and Jane Smith"
+              validationError={errors.name?.message}
+              {...register('name', {
+                required: { value: true, message: REQUIRED_FIELD_ERROR_MESSAGE }
+              })}
+            />
+          </Label>
+        </motion.div>
+        <motion.div layout>
+          <Label>
+            E-mail
+            <TextInput
+              type="text"
+              placeholder="jane.smith@example.com"
+              validationError={errors.email?.message}
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: REQUIRED_FIELD_ERROR_MESSAGE
+                },
+                pattern: {
+                  value: EMAIL_REGEX_PATTERN,
+                  message: INVALID_EMAIL_ERROR_MESSAGE
+                }
+              })}
+            />
+          </Label>
+        </motion.div>
+        <motion.div className="stack-row items-center" layout>
           <Label inline>
             <RadioButton
               value="coming"
@@ -102,26 +110,39 @@ export function ContactForm() {
             />
             Not coming
           </Label>
-        </div>
-        {rsvp === 'coming' && (
+        </motion.div>
+        <AnimatePresence>
+          {rsvp === 'coming' && (
+            <motion.div
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Label>
+                Dietary requirements
+                <Textarea
+                  placeholder="Vegan, vegetarian, gluten-free and anything like that!"
+                  {...register('dietaryRequirements')}
+                />
+              </Label>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.div layout>
           <Label>
-            Dietary requirements
+            Anything else?
             <Textarea
-              placeholder="Vegan, vegetarian, gluten-free and anything like that!"
-              {...register('dietaryRequirements')}
+              placeholder="Let us know if you are interested in accommodation or have any other requirements"
+              {...register('comments')}
             />
           </Label>
-        )}
-        <Label>
-          Anything else?
-          <Textarea
-            placeholder="Let us know if you are interested in accommodation or have any other requirements"
-            {...register('comments')}
-          />
-        </Label>
-        <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
-          Submit
-        </Button>
+        </motion.div>
+        <motion.div layout>
+          <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
+            Submit
+          </Button>
+        </motion.div>
       </div>
     </form>
   );
