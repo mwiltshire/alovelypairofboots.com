@@ -18,6 +18,7 @@ function Index() {
       <Toaster
         position="bottom-left"
         toastOptions={{
+          className: 'w-screen md:w-auto',
           duration: 4000,
           success: {
             iconTheme: { primary: 'var(--green)', secondary: 'var(--white)' }
@@ -26,7 +27,9 @@ function Index() {
             iconTheme: { primary: 'var(--red)', secondary: 'var(--white)' }
           },
           style: {
-            padding: '1rem'
+            padding: '1rem',
+            background: 'var(--white)',
+            borderRadius: 0
           }
         }}
       />
