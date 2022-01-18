@@ -12,7 +12,7 @@ import { Rsvp } from '../sections/Rsvp';
 import { Flower3 } from '../components/Flower3';
 import { Flower4 } from '../components/Flower4';
 
-function Index() {
+export default function Index() {
   return (
     <Layout>
       <Toaster
@@ -60,5 +60,3 @@ function Index() {
     </Layout>
   );
 }
-
-export default Index;
