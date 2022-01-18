@@ -13,14 +13,17 @@ const variants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05
+      duration: 1,
+      delay: 1,
+      staggerChildren: 0.05,
+      delayChildren: 1
     }
   }
 };
 
 const listItemVariants = {
   initial: { y: -25 },
-  show: { y: 0 }
+  show: { y: 0, transition: { duration: 0.5 } }
 };
 
 export function DesktopNavMenuList({ items }: DesktopNavMenuListProps) {

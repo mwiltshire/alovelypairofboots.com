@@ -17,14 +17,14 @@ export function Home() {
         className="w-full"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 1 }}
       >
         <Card>
           <motion.div
             className="absolute -z-10 top-[-50%] left-0 md:left-[-30%]"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
             <Flower1 />
           </motion.div>
@@ -32,7 +32,7 @@ export function Home() {
             className="absolute -z-10 bottom-[-50%] right-0 md:right-[-30%]"
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
             <Flower2 />
           </motion.div>
