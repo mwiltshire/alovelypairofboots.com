@@ -14,7 +14,7 @@ import { Rsvp } from '../sections/Rsvp';
 import { Flower3 } from '../components/Flower3';
 import { Flower4 } from '../components/Flower4';
 
-function Index() {
+export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -73,5 +73,3 @@ function Index() {
     </>
   );
 }
-
-export default Index;
