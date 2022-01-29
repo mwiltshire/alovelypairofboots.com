@@ -34,13 +34,13 @@ export function SectionCard({ children }: SectionCardProps) {
     >
       <Card>
         <motion.div
-          className="absolute hidden md:block h-28 top-[-54px] left-[-59px]"
+          className="absolute hidden md:block h-28 top-[-59px] left-[-65px]"
           layout
         >
           <Flower3 />
         </motion.div>
         <motion.div
-          className="absolute hidden md:block h-28 bottom-[-61px] right-[-51px]"
+          className="absolute hidden md:block h-28 bottom-[-59px] right-[-56px]"
           layout
         >
           <Flower4 />

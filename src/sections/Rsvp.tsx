@@ -15,8 +15,8 @@ export function Rsvp() {
               <Heading level={2}>RSVP</Heading>
             </motion.div>
             <motion.p layout>
-              Chris & Shauna joyfully request the pleasure of your company as we
-              join in marriage in the presence of family and friends.
+              Please let us know if you are able to join us by completing the
+              form below. We look forward to seeing you!
             </motion.p>
             <ContactForm />
           </div>

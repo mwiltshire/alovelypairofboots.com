@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createScrollTo } from '../utils/scrollTo';
 
@@ -49,22 +49,6 @@ export function MobileNavMenuList({
   isExpanded,
   onNavItemClick
 }: MobileNavMenuListProps) {
-  // useEffect(() => {
-  //   if (isExpanded) {
-  //     // don't use overflow-hidden, as that toggles the scrollbar and causes layout shift
-  //     document.body.style.position = 'fixed';
-  //     document.body.style.overflowY = 'scroll';
-  //     // alternatively, get bounding box of the menu, and set body height to that.
-  //     document.body.style.height = '100vh';
-  //     document.body.style.width = '100vw';
-  //   } else {
-  //     document.body.style.removeProperty('position');
-  //     document.body.style.removeProperty('overflow-y');
-  //     document.body.style.removeProperty('height');
-  //     document.body.style.removeProperty('width');
-  //   }
-  // }, [isExpanded]);
-
   return (
     <AnimatePresence>
       {isExpanded && (

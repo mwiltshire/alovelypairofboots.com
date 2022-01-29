@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Sentry from '@sentry/gatsby';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -7,6 +8,16 @@ import { TextInput } from './TextInput';
 import { RadioButton } from './RadioButton';
 import { Textarea } from './Textarea';
 import { Button } from './Button';
+
+declare global {
+  interface Window {
+    gtag?: (
+      command: 'event',
+      eventName: string,
+      eventParams: Record<string, string>
+    ) => void;
+  }
+}
 
 interface FormFields {
   name?: string;
@@ -24,10 +35,50 @@ const EMAIL_REGEX_PATTERN =
 const REQUIRED_FIELD_ERROR_MESSAGE = 'This field is required!';
 const INVALID_EMAIL_ERROR_MESSAGE = 'Invalid e-mail!';
 
-async function submitForm() {
-  return new Promise(res => {
-    setTimeout(res, 3000);
-  });
+function isErrorObject(e: unknown): e is Error {
+  return (
+    e !== null &&
+    typeof e === 'object' &&
+    Object.prototype.hasOwnProperty.call(e, 'message')
+  );
+}
+
+const formFieldMap: Record<string, string> = {
+  name: 'Name',
+  email: 'E-mail',
+  rsvp: 'RSVP',
+  dietaryRequirements: 'Dietary Requirements',
+  comments: 'Comments'
+};
+
+async function submit(data: FormFields) {
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
+  }
+  const submitData: Record<string, string> = Object.fromEntries(
+    Object.entries(data)
+      .filter(([, v]) => typeof v !== 'undefined')
+      .map(([k, v]) => [formFieldMap[k], v])
+  );
+  try {
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(submitData as Record<string, string>).toString()
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Attempt to post form data resulted in ${response.status} response`
+      );
+    }
+  } catch (e) {
+    if (isErrorObject(e)) {
+      throw new Error(`Form submit error: ${e.message}`);
+    }
+
+    throw new Error('Unkown error sumitting form');
+  }
 }
 
 export function ContactForm() {
@@ -41,13 +92,16 @@ export function ContactForm() {
     defaultValues: { rsvp: 'coming' }
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: FormFields) => {
     try {
-      await submitForm();
+      await submit(data);
       reset();
       toast.success('Got it! Thanks for responding!');
-    } catch {
+    } catch (e) {
       toast.error("Oh no! That didn't work, try again!");
+      Sentry.captureException(e, {
+        contexts: { form: data as Record<string, string | undefined> }
+      });
     }
   };
 
@@ -56,13 +110,16 @@ export function ContactForm() {
   return (
     <form
       className="w-full"
+      data-netlify="true"
+      name="RSVP"
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <input type="hidden" name="form-name" value="RSVP" />
       <div className="stack">
         <motion.div layout>
           <Label>
-            Name/s
+            Name(s)
             <TextInput
               type="text"
               placeholder="John and Jane Smith"

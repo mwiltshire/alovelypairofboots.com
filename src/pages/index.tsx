@@ -6,7 +6,7 @@ import { Layout } from '../components/Layout';
 import { Container } from '../components/Container';
 import { Home } from '../sections/Home';
 import { Venue } from '../sections/Venue';
-import { Timetable } from '../sections/Timetable';
+import { Timings } from '../sections/Timings';
 import { Info } from '../sections/Info';
 import { Accommodation } from '../sections/Accommodation';
 import { Registry } from '../sections/Registry';
@@ -37,10 +37,15 @@ export default function Index() {
                 }
               },
               error: {
-                iconTheme: { primary: 'var(--red)', secondary: 'var(--white)' }
+                iconTheme: { primary: 'var(--red)', secondary: 'var(--white)' },
+                style: {
+                  color: 'var(--red)'
+                }
               },
               style: {
-                padding: '1rem'
+                padding: '1rem',
+                borderRadius: '0px',
+                backgroundColor: 'var(--white)'
               }
             }}
           />
@@ -50,7 +55,7 @@ export default function Index() {
             <div className="h-16 md:hidden">
               <Flower3 />
             </div>
-            <Timetable />
+            <Timings />
             <div className="h-16 md:hidden">
               <Flower4 />
             </div>

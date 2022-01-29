@@ -11,11 +11,12 @@ export function Registry() {
           <Heading level={2}>Registry</Heading>
           <p>
             Many of you are traveling across the globe to celebrate with us in
-            Kent, so your presence means the world to us and is all we ask for.
-            If you’d still like to contribute to our registry or honeymoon
-            funds, please select from the options below.
+            Kent. Your presence means the world to us and is all we ask for. If
+            you’d still like to give us a gift, a contribution to our honeymoon
+            funds would be lovely.
           </p>
-          <a
+          <p className="text-gray">Registry to follow</p>
+          {/* <a
             className="btn"
             href="https://prezola.com/wishlists/10205845/"
             target="_blank"
@@ -25,7 +26,7 @@ export function Registry() {
               src="https://static.prezola.com/staticfiles/img/black_logo.svg"
               alt="Prezola logo"
             />
-          </a>
+          </a> */}
         </div>
       </SectionCard>
     </Section>

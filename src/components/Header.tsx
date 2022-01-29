@@ -9,7 +9,7 @@ const scrollTo = createScrollTo();
 
 const navItems = [
   'Venue',
-  'Timetable',
+  'Timings',
   'Info',
   'Accommodation',
   'Registry',
