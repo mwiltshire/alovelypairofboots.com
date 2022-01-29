@@ -111,11 +111,12 @@ export function ContactForm() {
     <form
       className="w-full"
       data-netlify="true"
-      name="RSVP"
+      name="rsvp"
+      method="post"
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <input type="hidden" name="form-name" value="RSVP" />
+      <input type="hidden" name="form-name" value="rsvp" />
       <div className="stack">
         <motion.div layout>
           <Label>
