@@ -61,6 +61,25 @@ module.exports = {
           }
         }
       }
+    },
+    {
+      resolve: '@sentry/gatsby',
+      options: {
+        dsn: 'https://273584fcb6ac4444af66e7f5de6481a6@o406725.ingest.sentry.io/6173885',
+        sampleRate: 1,
+        environment: process.env.NODE_ENV,
+        enabled: true
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: ['G-6QZ0F2CBMG'],
+        pluginConfig: {
+          head: true,
+          respectDNT: true
+        }
+      }
     }
   ]
 };
