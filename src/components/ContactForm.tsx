@@ -43,23 +43,14 @@ function isErrorObject(e: unknown): e is Error {
   );
 }
 
-const formFieldMap: Record<string, string> = {
-  name: 'Name',
-  email: 'E-mail',
-  rsvp: 'RSVP',
-  dietaryRequirements: 'Dietary Requirements',
-  comments: 'Comments'
-};
-
 async function submit(data: FormFields) {
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
   }
   const submitData: Record<string, string> = Object.fromEntries(
-    Object.entries(data)
-      .filter(([, v]) => typeof v !== 'undefined')
-      .map(([k, v]) => [formFieldMap[k], v])
+    Object.entries(data).filter(([, v]) => typeof v !== 'undefined')
   );
+  submitData['form-name'] = 'contact';
   try {
     const response = await fetch('/', {
       method: 'POST',
@@ -108,108 +99,107 @@ export function ContactForm() {
   const rsvp = watch('rsvp');
 
   return (
-    <>
-      <form
-        className="w-full"
-        data-netlify="true"
-        name="contact"
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <div className="stack">
-          <motion.div layout>
-            <Label>
-              Name(s)
-              <TextInput
-                type="text"
-                placeholder="John and Jane Smith"
-                validationError={errors.name?.message}
-                {...register('name', {
-                  required: {
-                    value: true,
-                    message: REQUIRED_FIELD_ERROR_MESSAGE
-                  }
-                })}
-              />
-            </Label>
-          </motion.div>
-          <motion.div layout>
-            <Label>
-              E-mail
-              <TextInput
-                type="text"
-                placeholder="jane.smith@example.com"
-                validationError={errors.email?.message}
-                {...register('email', {
-                  required: {
-                    value: true,
-                    message: REQUIRED_FIELD_ERROR_MESSAGE
-                  },
-                  pattern: {
-                    value: EMAIL_REGEX_PATTERN,
-                    message: INVALID_EMAIL_ERROR_MESSAGE
-                  }
-                })}
-              />
-            </Label>
-          </motion.div>
-          <motion.div className="stack-row items-center" layout>
-            <Label inline>
-              <RadioButton
-                value="coming"
-                checked={rsvp === 'coming'}
-                {...register('rsvp')}
-              />
-              Coming
-            </Label>
-            <Label inline>
-              <RadioButton
-                value="not-coming"
-                checked={rsvp === 'not-coming'}
-                {...register('rsvp')}
-              />
-              Not coming
-            </Label>
-          </motion.div>
-          <AnimatePresence>
-            {rsvp === 'coming' && (
-              <motion.div
-                layout
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <Label>
-                  Dietary requirements
-                  <Textarea
-                    placeholder="Vegan, vegetarian, gluten-free and anything like that!"
-                    {...register('dietaryRequirements')}
-                  />
-                </Label>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <motion.div layout>
-            <Label>
-              Anything else?
-              <Textarea
-                placeholder="Let us know if you are interested in accommodation or have any other requirements"
-                {...register('comments')}
-              />
-            </Label>
-          </motion.div>
-          <motion.div layout>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              loading={isSubmitting}
+    <form
+      className="w-full"
+      autoComplete="off"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="stack">
+        <motion.div layout>
+          <Label>
+            Name(s)
+            <TextInput
+              type="text"
+              placeholder="John and Jane Smith"
+              validationError={errors.name?.message}
+              {...register('name', {
+                required: {
+                  value: true,
+                  message: REQUIRED_FIELD_ERROR_MESSAGE
+                }
+              })}
+            />
+          </Label>
+        </motion.div>
+        <motion.div layout>
+          <Label>
+            E-mail
+            <TextInput
+              type="text"
+              placeholder="jane.smith@example.com"
+              validationError={errors.email?.message}
+              {...register('email', {
+                required: {
+                  value: true,
+                  message: REQUIRED_FIELD_ERROR_MESSAGE
+                },
+                pattern: {
+                  value: EMAIL_REGEX_PATTERN,
+                  message: INVALID_EMAIL_ERROR_MESSAGE
+                }
+              })}
+            />
+          </Label>
+        </motion.div>
+        <motion.div className="stack-row items-center" layout>
+          <Label inline>
+            <RadioButton
+              value="coming"
+              checked={rsvp === 'coming'}
+              {...register('rsvp')}
+            />
+            Coming
+          </Label>
+          <Label inline>
+            <RadioButton
+              value="not-coming"
+              checked={rsvp === 'not-coming'}
+              {...register('rsvp')}
+            />
+            Not coming
+          </Label>
+        </motion.div>
+        <AnimatePresence>
+          {rsvp === 'coming' && (
+            <motion.div
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              Submit
-            </Button>
-          </motion.div>
-        </div>
-      </form>
-    </>
+              <Label>
+                Dietary requirements
+                <Textarea
+                  placeholder="Vegan, vegetarian, gluten-free and anything like that!"
+                  {...register('dietaryRequirements')}
+                />
+              </Label>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <motion.div layout>
+          <Label>
+            Anything else?
+            <Textarea
+              placeholder="Let us know if you are interested in accommodation or have any other requirements"
+              {...register('comments')}
+            />
+          </Label>
+        </motion.div>
+        <motion.div layout>
+          <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
+            Submit
+          </Button>
+        </motion.div>
+      </div>
+    </form>
   );
+}
+
+interface FormFields {
+  name?: string;
+  email?: string;
+  rsvp?: 'coming' | 'not-coming';
+  dietaryRequirements?: string;
+  comments?: string;
 }
