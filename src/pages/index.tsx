@@ -73,17 +73,17 @@ export default function Index() {
             </div>
             <Rsvp />
           </Container>
-          {/* This is just for Netlify */}
-          <form name="contact" data-netlify="true" hidden>
-            <input type="hidden" name="name" />
-            <input type="hidden" name="email" />
-            <input type="hidden" name="rsvp" />
-            <input type="hidden" name="dietaryRequirements" />
-            <input type="hidden" name="comments" />
-          </form>
-          {/* This is just for Netlify */}
         </Layout>
       )}
+      {/* This is just for Netlify */}
+      <form name="contact" data-netlify="true" hidden>
+        <input type="hidden" name="name" />
+        <input type="hidden" name="email" />
+        <input type="hidden" name="rsvp" />
+        <input type="hidden" name="dietaryRequirements" />
+        <input type="hidden" name="comments" />
+      </form>
+      {/* This is just for Netlify */}
     </>
   );
 }
