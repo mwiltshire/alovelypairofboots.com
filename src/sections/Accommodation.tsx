@@ -12,7 +12,7 @@ export function Accommodation() {
           <p>
             We have booked a limited number of rooms at Bore Place House and the
             Old Stables. If you would like to reserve one of these rooms let us
-            know in the RSVP form below and we shall do out best to accommodate
+            know in the RSVP form below and we shall do our best to accommodate
             you. Please note the bathrooms are shared by about three rooms.
             Depending on the room, the rate will be around £60-£100 per night. A
             self-service, continental breakfast will be provided in the shared
