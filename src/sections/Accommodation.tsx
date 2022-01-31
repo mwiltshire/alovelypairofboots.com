@@ -10,23 +10,25 @@ export function Accommodation() {
         <div className="stack items-center">
           <Heading level={2}>Accommodation</Heading>
           <p>
-            We have booked a limited number of rooms at Bore Place House and the
-            Old Stables. If you would like to reserve one of these rooms let us
-            know in the RSVP form below and we shall do our best to accommodate
-            you. Please note the bathrooms are shared by about three rooms.
-            Depending on the room, the rate will be around £60-£100 per night. A
-            self-service, continental breakfast will be provided in the shared
-            kitchens of each house, but feel free to bring anything to
-            supplement this.
+            We have a very limited number of rooms in Bore Place House and the
+            Old Stables. Depending on the room, the rate will be around £60-£100
+            per night. Please note the bathrooms are shared by about three
+            rooms. A self-service, continental breakfast will be provided in the
+            shared kitchens of each house, but feel free to bring anything else
+            you may like.
           </p>
           <p>
-            Separately, Bore Place also have available two cottages, a shepherds
-            hut and two luxury yurts. You can also bring your own tent for a
-            small pitch fee. Please book these options through the venue.
+            Bore Place also has two additional cottages, a shepherds hut, two
+            luxury yurts or the option to bring your own tent for a small pitch
+            fee (rates to be confirmed).
           </p>
           <p>
-            Alternatively, there are Airbnb options nearby and the venue is only
-            a 20 minute drive from Sevenoaks.
+            If you are interested in these options let us know in the RSVP form
+            below and we shall do our best to accommodate you.
+          </p>
+          <p>
+            There are also some Airbnb options nearby and Sevenoaks is only a 20
+            minute drive from the venue.
           </p>
         </div>
       </SectionCard>
