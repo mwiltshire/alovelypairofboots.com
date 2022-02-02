@@ -107,7 +107,7 @@ export function ContactForm() {
       <div className="stack">
         <motion.div layout>
           <Label>
-            Name(s)
+            Name(s) of all guest(s) attending
             <TextInput
               type="text"
               placeholder="John and Jane Smith"
