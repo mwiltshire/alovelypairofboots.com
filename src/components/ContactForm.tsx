@@ -204,7 +204,7 @@ export function ContactForm() {
             </Label>
           </div>
         )}
-        <div>
+        {rsvp === 'coming' && (
           <Label>
             Anything else?
             <Textarea
@@ -212,13 +212,13 @@ export function ContactForm() {
               validationError={errors.comments?.message}
               {...register('comments', {
                 required: {
-                  value: rsvp === 'coming',
+                  value: true,
                   message: REQUIRED_FIELD_ERROR_MESSAGE
                 }
               })}
             />
           </Label>
-        </div>
+        )}
         <div>
           <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
             Submit
