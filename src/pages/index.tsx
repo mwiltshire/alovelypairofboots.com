@@ -81,6 +81,7 @@ export default function Index() {
         <input type="hidden" name="email" />
         <input type="hidden" name="rsvp" />
         <input type="hidden" name="dietaryRequirements" />
+        <input type="hidden" name="dietaryRequirementsDescription" />
         <input type="hidden" name="comments" />
       </form>
       {/* This is just for Netlify */}

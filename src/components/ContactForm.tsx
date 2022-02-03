@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as Sentry from '@sentry/gatsby';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Label } from './Label';
@@ -23,7 +22,8 @@ interface FormFields {
   name?: string;
   email?: string;
   rsvp?: 'coming' | 'not-coming';
-  dietaryRequirements?: string;
+  dietaryRequirements?: 'yes' | 'no';
+  dietaryRequirementsDescription?: string;
   comments?: string;
 }
 
@@ -44,19 +44,20 @@ function isErrorObject(e: unknown): e is Error {
 }
 
 async function submit(data: FormFields) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
-  }
+  // if (typeof window.gtag === 'function') {
+  //   window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
+  // }
   const submitData: Record<string, string> = Object.fromEntries(
     Object.entries(data).filter(([, v]) => typeof v !== 'undefined')
   );
   submitData['form-name'] = 'contact';
   try {
-    const response = await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(submitData as Record<string, string>).toString()
-    });
+    // const response = await fetch('/', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    //   body: new URLSearchParams(submitData as Record<string, string>).toString()
+    // });
+    const response = { ok: true, status: '' };
 
     if (!response.ok) {
       throw new Error(
@@ -80,7 +81,7 @@ export function ContactForm() {
     reset,
     formState: { errors, isSubmitting }
   } = useForm<FormFields>({
-    defaultValues: { rsvp: 'coming' }
+    defaultValues: { rsvp: 'coming', dietaryRequirements: 'no' }
   });
 
   const onSubmit = async (data: FormFields) => {
@@ -97,6 +98,7 @@ export function ContactForm() {
   };
 
   const rsvp = watch('rsvp');
+  const dietaryRequirements = watch('dietaryRequirements');
 
   return (
     <form
@@ -105,7 +107,7 @@ export function ContactForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="stack">
-        <motion.div layout>
+        <div>
           <Label>
             Name(s) of guest(s) attending
             <TextInput
@@ -120,8 +122,8 @@ export function ContactForm() {
               })}
             />
           </Label>
-        </motion.div>
-        <motion.div layout>
+        </div>
+        <div>
           <Label>
             E-mail
             <TextInput
@@ -140,8 +142,9 @@ export function ContactForm() {
               })}
             />
           </Label>
-        </motion.div>
-        <motion.div className="stack-row items-center" layout>
+        </div>
+        <p className="font-bold text-xs">I am/we are...</p>
+        <div className="stack-row items-center">
           <Label inline>
             <RadioButton
               value="coming"
@@ -158,48 +161,70 @@ export function ContactForm() {
             />
             Not coming
           </Label>
-        </motion.div>
-        <AnimatePresence>
-          {rsvp === 'coming' && (
-            <motion.div
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <Label>
-                Dietary requirements
-                <Textarea
-                  placeholder="Vegan, vegetarian, gluten-free and anything like that!"
+        </div>
+        {rsvp === 'coming' && (
+          <div className="stack">
+            <p className="font-bold text-xs">
+              Do you have any dietary requirements?
+            </p>
+            <div className="stack-row items-center">
+              <Label inline>
+                <RadioButton
+                  value="yes"
+                  checked={dietaryRequirements === 'yes'}
                   {...register('dietaryRequirements')}
                 />
+                Yes
               </Label>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <motion.div layout>
+              <Label inline>
+                <RadioButton
+                  value="no"
+                  checked={dietaryRequirements === 'no'}
+                  {...register('dietaryRequirements')}
+                />
+                No
+              </Label>
+            </div>
+          </div>
+        )}
+        {rsvp === 'coming' && dietaryRequirements === 'yes' && (
+          <div>
+            <Label>
+              Dietary requirements
+              <Textarea
+                placeholder="Vegan, vegetarian, gluten-free and anything like that!"
+                validationError={errors.dietaryRequirementsDescription?.message}
+                {...register('dietaryRequirementsDescription', {
+                  required: {
+                    value: true,
+                    message: REQUIRED_FIELD_ERROR_MESSAGE
+                  }
+                })}
+              />
+            </Label>
+          </div>
+        )}
+        <div>
           <Label>
             Anything else?
             <Textarea
               placeholder="Let us know if you are interested in accommodation or have any other requirements"
-              {...register('comments')}
+              validationError={errors.comments?.message}
+              {...register('comments', {
+                required: {
+                  value: rsvp === 'coming',
+                  message: REQUIRED_FIELD_ERROR_MESSAGE
+                }
+              })}
             />
           </Label>
-        </motion.div>
-        <motion.div layout>
+        </div>
+        <div>
           <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
             Submit
           </Button>
-        </motion.div>
+        </div>
       </div>
     </form>
   );
-}
-
-interface FormFields {
-  name?: string;
-  email?: string;
-  rsvp?: 'coming' | 'not-coming';
-  dietaryRequirements?: string;
-  comments?: string;
 }
