@@ -44,20 +44,19 @@ function isErrorObject(e: unknown): e is Error {
 }
 
 async function submit(data: FormFields) {
-  // if (typeof window.gtag === 'function') {
-  //   window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
-  // }
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'form_submit', { data: JSON.stringify(data) });
+  }
   const submitData: Record<string, string> = Object.fromEntries(
     Object.entries(data).filter(([, v]) => typeof v !== 'undefined')
   );
   submitData['form-name'] = 'contact';
   try {
-    // const response = await fetch('/', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //   body: new URLSearchParams(submitData as Record<string, string>).toString()
-    // });
-    const response = { ok: true, status: '' };
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(submitData as Record<string, string>).toString()
+    });
 
     if (!response.ok) {
       throw new Error(
