@@ -10,22 +10,12 @@ export function Accommodation() {
         <div className="stack items-center">
           <Heading level={2}>Accommodation</Heading>
           <p>
-            We have a very limited number of rooms in Bore Place House and the
-            Old Stables. Depending on the room, the rate will be around £60-£120
-            per night. Please note the bathrooms are shared by about three
-            rooms. A self-service, continental breakfast will be provided in the
-            shared kitchens of each house, but feel free to bring anything else
-            you may like. If you are interested in a room let us know in the
-            RSVP form below and we shall do our best to accommodate you.
+            We have a limited number of rooms at Bore Place and these have now
+            been allocated.
           </p>
           <p>
-            Camping is allowed on site for a small pitch fee. If you plan to do
-            this let us know in the RSVP form below so the venue can prepare the
-            site.
-          </p>
-          <p>
-            Bore Place Farm also has two shepards huts and two yurts which you
-            can book{' '}
+            Bore Place Farm have available two shepards huts and two yurts which
+            you can book{' '}
             <a
               className="underline decoration-green decoration-3 underline-offset-1"
               href="https://www.freerangeglamping.co.uk/"
@@ -37,8 +27,14 @@ export function Accommodation() {
             .
           </p>
           <p>
-            There are also some Airbnb options in the area and Sevenoaks is only
-            a 20 minute drive from the venue.
+            You may also bring your own tent for a small pitch fee. If you would
+            like this option please mention it in the RSVP form below and we’ll
+            let you know the details once confirmed by the venue.
+          </p>
+          <p>
+            There are a few B&Bs, hotels and Airbnbs in the area including The
+            Greyhound Inn and The Leicester Arms which are about 10 minutes
+            drive from the venue.
           </p>
         </div>
       </SectionCard>
