@@ -33,8 +33,24 @@ export function Accommodation() {
           </p>
           <p>
             There are a few B&Bs, hotels and Airbnbs in the area including The
-            Greyhound Inn and The Leicester Arms which are about 10 minutes
-            drive from the venue.
+            <a
+              className="underline decoration-green decoration-2 underline-offset-2"
+              href="https://www.greyhoundhever.co.uk/bed-and-breakfast/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Greyhound Inn
+            </a>{' '}
+            and{' '}
+            <a
+              className="underline decoration-green decoration-2 underline-offset-2"
+              href="https://www.theleicesterarms.com/our-rooms"
+              target="_blank"
+              rel="noreferrer"
+            >
+              The Leicester Arms
+            </a>{' '}
+            which are about 10 minutes drive from the venue.
           </p>
         </div>
       </SectionCard>
