@@ -32,14 +32,14 @@ export function Accommodation() {
             let you know the details once confirmed by the venue.
           </p>
           <p>
-            There are a few B&Bs, hotels and Airbnbs in the area including The
+            There are a few B&Bs, hotels and Airbnbs in the area including{' '}
             <a
               className="underline decoration-green decoration-2 underline-offset-2"
               href="https://www.greyhoundhever.co.uk/bed-and-breakfast/"
               target="_blank"
               rel="noreferrer"
             >
-              Greyhound Inn
+              The Greyhound Inn
             </a>{' '}
             and{' '}
             <a
