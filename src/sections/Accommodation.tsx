@@ -17,7 +17,7 @@ export function Accommodation() {
             Bore Place Farm have available two shepards huts and two yurts which
             you can book{' '}
             <a
-              className="underline decoration-green decoration-3 underline-offset-1"
+              className="underline decoration-green decoration-2 underline-offset-2"
               href="https://www.freerangeglamping.co.uk/"
               target="_blank"
               rel="noreferrer"
