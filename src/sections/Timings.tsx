@@ -7,8 +7,8 @@ const timings = [
   { time: '2:00 pm', event: 'Ceremony' },
   { time: '2:45 pm', event: 'Drinks' },
   { time: '4:30 pm', event: 'Paella' },
-  { time: '7:00 pm', event: 'Cutting of the Cake & First Dance' },
-  { time: '8:00 pm', event: 'Evening Guests Arrive' },
+  { time: '6:30 pm', event: 'Coffee and Cake' },
+  { time: '7:00 pm', event: 'Evening Guests Arrive' },
   { time: '9:00 pm', event: 'Evening Food' },
   { time: '12:00 am', event: 'Taxis' }
 ];

@@ -15,7 +15,7 @@ export function Registry() {
             you’d still like to give us a gift, a contribution to our honeymoon
             funds would be lovely.
           </p>
-          <p className="text-gray">Registry to follow</p>
+          {/* <p className="text-gray">Registry to follow</p> */}
           {/* <a
             className="btn"
             href="https://prezola.com/wishlists/10205845/"
