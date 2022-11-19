@@ -2,13 +2,8 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '../components/Section';
 import { Card } from '../components/Card';
-import { Heading } from '../components/Heading';
-import { LinkButton } from '../components/LinkButton';
 import { Flower1 } from '../components/Flower1';
 import { Flower2 } from '../components/Flower2';
-import { createScrollTo } from '../utils/scrollTo';
-
-const scrollTo = createScrollTo();
 
 export function Home() {
   return (
@@ -21,7 +16,7 @@ export function Home() {
       >
         <Card>
           <motion.div
-            className="absolute -z-10 top-[-50%] left-0 md:left-[-30%]"
+            className="absolute -z-10 top-[-35%] left-0 md:left-[-35%] h-2/3 w-2/3"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
@@ -29,30 +24,26 @@ export function Home() {
             <Flower1 />
           </motion.div>
           <motion.div
-            className="absolute -z-10 bottom-[-50%] right-0 md:right-[-30%]"
+            className="absolute -z-10 bottom-[-35%] right-0 md:right-[-35%] h-2/3 w-2/3"
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1 }}
           >
             <Flower2 />
           </motion.div>
-          <div className="stack stack-gap-lg items-center">
-            <Heading level={1}>
-              <span className="block text-center text-2xl">
-                <span className="block text-6xl mb-8">Shauna & Chris</span> are
-                getting married on <br />
-                Tuesday 23rd August 2022
-              </span>
-            </Heading>
-            <LinkButton
-              href="#rsvp"
-              onClick={e => {
-                e.preventDefault();
-                scrollTo('#rsvp');
+          <div className="relative h-0 w-full pb-[56.25%]">
+            <iframe
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%'
               }}
-            >
-              RSVP
-            </LinkButton>
+              title="Wedding video"
+              src="https://player.vimeo.com/video/772602839?h=93eda79092&byline=false&title=false"
+              allow="autoplay"
+            ></iframe>
           </div>
         </Card>
       </motion.div>
