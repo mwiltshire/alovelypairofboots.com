@@ -3,6 +3,7 @@ import * as React from 'react';
 export function Flower2() {
   return (
     <svg
+      style={{ width: '100%', height: '100%' }}
       width="267"
       height="276"
       viewBox="0 0 267 276"
